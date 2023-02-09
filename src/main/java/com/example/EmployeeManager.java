@@ -1,6 +1,7 @@
 package com.example;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EmployeeManager {
 
@@ -25,5 +26,11 @@ public class EmployeeManager {
 			}
 		}
 		return payments;
+	}
+
+	public List<Employee> getAllNotPaidEmployees() {
+		List<Employee> employees = employeeRepository.findAll();
+		return employees.stream().filter(employee -> !employee.isPaid()).collect(Collectors.toList());
+
 	}
 }
