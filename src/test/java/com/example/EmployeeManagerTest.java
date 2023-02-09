@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,12 +20,29 @@ public class EmployeeManagerTest {
 
     @Test
     public void setUpNewEmployee() {
-        Employee employee1 = new Employee("1", 20000, false);
+        Employee employee1 = new Employee("1", 20000, true);
         employee1.setId("1");
         employee1.setSalary(20000);
-        employee1.setPaid(false);
+        employee1.setPaid(true);
         System.out.println("Running a test...");
+    }
 
+    @Test
+    public void testShouldPayEmployeeWithPayMethodMockito() {
+        Employee employee1 = new Employee("1",20000);
+        Employee employee2 = new Employee("2", 30000);
+
+        EmployeeRepository employeeRepository = mock(EmployeeRepository.class);
+        BankService bankService = mock(BankService.class);
+
+        List<Employee> allEmployees = Arrays.asList(employee1,employee2);
+//        List<Employee> employeeList = new ArrayList<>();
+
+        when(employeeRepository.findAll()).thenReturn(allEmployees);
+
+        EmployeeManager employeeManager = new EmployeeManager(employeeRepository,bankService);
+        Assertions.assertEquals(2, employeeManager.payEmployees());
+        verify(bankService,times(2)).pay(anyString(),anyDouble());
     }
 
     @Test
