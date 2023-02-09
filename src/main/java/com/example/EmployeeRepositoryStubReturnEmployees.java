@@ -5,6 +5,7 @@ import java.util.List;
 
 public class EmployeeRepositoryStubReturnEmployees implements EmployeeRepository{
 
+
     @Override
     public List<Employee> findAll() {
         Employee employee1 = new Employee("1", 20000);
@@ -17,6 +18,6 @@ public class EmployeeRepositoryStubReturnEmployees implements EmployeeRepository
 
     @Override
     public Employee save(Employee e) {
-        return null;
+        return e;
     }
 }
