@@ -10,7 +10,7 @@ public class EmployeeRepositoryStubReturnEmployees implements EmployeeRepository
     public List<Employee> findAll() {
         Employee employee1 = new Employee("1", 20000);
         employee1.setPaid(false);
-        Employee employee2 = new Employee("2", 30000);
+        Employee employee2 = new Employee("1", 30000);
         employee2.setPaid(true);
 
         return Arrays.asList(employee1,employee2);
@@ -18,6 +18,6 @@ public class EmployeeRepositoryStubReturnEmployees implements EmployeeRepository
 
     @Override
     public Employee save(Employee e) {
-        return e;
+        return null;
     }
 }
