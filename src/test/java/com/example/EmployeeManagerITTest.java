@@ -30,6 +30,14 @@ public class EmployeeManagerITTest {
     }
 
     @Test
+    public void testShouldFindEmployeeAndReturnList() {
+        var employee = employeeRepository.findAll().get(0);
+        assertEquals("1", employee.getId());
+        System.out.println("Employee picked from list was: " + employee + "\n" +
+                "List contains: " + employeeRepository.employeeList);
+    }
+
+    @Test
     public void testSaveEmployeeToEmployeeList() {
         Employee employee3 = new Employee("3",300000);
         employeeRepository.save(employee3);

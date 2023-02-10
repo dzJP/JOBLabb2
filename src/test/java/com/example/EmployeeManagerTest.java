@@ -53,6 +53,7 @@ public class EmployeeManagerTest {
         employeeRepository.save(employee1);
         employeeRepository.save(employee2);
         Assertions.assertEquals(2, employeeRepository.findAll().size());
+        System.out.println("List contains: " + employeeRepository.findAll());
 
     }
 
